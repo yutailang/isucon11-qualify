@@ -1,5 +1,5 @@
 {
-  "baseName": "EmptyExample",
+  "baseName": "ISUCONDITION",
   "modelFilePath": "OpenAPI.yml",
   "modelFormat": "OPENAPI3_0",
   "generationType": "serverWithPlugin",
