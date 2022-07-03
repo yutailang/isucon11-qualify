@@ -1,5 +1,5 @@
 FROM fabianfett/amazonlinux-swift:5.2-amazonlinux2
-ENV SERVICE_NAME=EmptyExampleService
+ENV SERVICE_NAME=IsuConditionService
 WORKDIR /swift/application/src/
 COPY Sources ./Sources/
 COPY Tests ./Tests/
@@ -17,4 +17,4 @@ RUN mkdir app
 WORKDIR /app
 COPY --from=0 /swift/application/src/.build/service /app/
 EXPOSE 8080
-CMD ["/lib64/ld-linux-x86-64.so.2", "--library-path", "libraries", "./EmptyExampleService"]
+CMD ["/lib64/ld-linux-x86-64.so.2", "--library-path", "libraries", "./IsuConditionService"]
