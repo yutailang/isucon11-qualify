@@ -1,0 +1,695 @@
+openapi: 3.0.3
+info:
+  title: ISUCONDITON
+  version: 2022-07-03
+servers:
+- url: /
+paths:
+  /api/initialize: # サービスを初期化
+    post:
+      operationId: Initialize
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - jia_service_url
+              type: object
+              properties:
+                jia_service_url:
+                  type: string
+        required: true
+      responses:
+        200:
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InitializeAttributes'
+        400:
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestBodyFault'
+        500:
+          description: 500 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerFault'
+      security:
+      - sigv4: []
+  /api/auth: # サインアップ・サインイン
+    post:
+      operationId: Auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dummy:
+                  type: string
+ 
+        required: false
+      responses:
+        200:
+          description: 200 response
+        400:
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestBodyFault'
+        403:
+          description: 403 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenFault'
+        500:
+          description: 500 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerFault'
+      security:
+      - sigv4: []
+  /api/signout: # サウンアウト
+    post:
+      operationId: Signout
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dummy:
+                  type: string
+        required: false
+      responses:
+        200:
+          description: 200 response
+        500:
+          description: 500 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerFault'
+  /api/user/me: # サインインしている自分自身の情報を取得
+    get:
+      operationId: UserMe
+      responses:
+        200:
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                required:
+                - jia_user_id
+                type: object
+                properties:
+                  jia_user_id:
+                    maxLength: 2048
+                    minLength: 1
+                    type: string
+        401:
+          description: 401 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedFault'
+        500:
+          description: 500 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerFault'
+  /api/isu: # ISUの一覧を取得/ISUを登録
+    get: # ISUの一覧を取得
+      operationId: ListIsu
+      responses:
+        200:
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    $ref: '#/components/schemas/IsuList'
+        401:
+          description: 401 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedFault'
+        500:
+          description: 500 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerFault'
+    post: # ISUを登録
+      operationId: RegisterIsu
+      requestBody:
+        content:
+          multipart/form-data: # https://swagger.io/docs/specification/describing-request-body/multipart-requests/
+            schema:
+              required:
+                - jia_isu_uuid
+                - isu_name
+              type: object
+              properties:
+                jia_isu_uuid:
+                  type: string
+                isu_name:
+                  type: string
+                image:
+                  type: string
+                  format: binary
+            encoding:
+              image:
+                contentType: image/jpeg
+        required: true
+      responses:
+        201:
+          description: 201 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IsuAttributes'
+        400:
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestBodyFault'
+        401:
+          description: 401 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedFault'
+        409:
+          description: 409 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictFault'
+        500:
+          description: 500 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerFault'
+  /api/isu/{jia_isu_uuid}: # ISUの情報を取得
+    get:
+      operationId: GetIsu
+      parameters:
+      - name: jia_isu_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IsuAttributes'
+        401:
+          description: 401 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedFault'
+        404:
+          description: 404 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnknownResourceFault'
+        500:
+          description: 500 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerFault'
+      security:
+      - sigv4: []
+  /api/isu/{jia_isu_uuid}/icon: # ISUのアイコンを取得
+    get:
+      operationId: IsuIcon
+      parameters:
+      - name: jia_isu_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: 200 response
+          # content:
+          #   image/png:
+          #     schema:
+          #       type: string
+          #       format: binary
+        401:
+          description: 401 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedFault'
+        500:
+          description: 500 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerFault'
+      security:
+      - sigv4: []
+  /api/isu/{jia_isu_uuid}/graph: # ISUのコンディショングラフ描画のための情報を取得
+    get:
+      operationId: IsuGraph
+      parameters:
+      - name: jia_isu_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    $ref: '#/components/schemas/GraphList'
+        400:
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestBodyFault'
+        401:
+          description: 401 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedFault'
+        404:
+          description: 404 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnknownResourceFault'
+        500:
+          description: 500 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerFault'
+      security:
+      - sigv4: []
+  /api/condition/{jia_isu_uuid}: # ISUのコンディションを取得/ISUからのコンディションを受け取る
+    get: # ISUのコンディションを取得
+      operationId: IsuCondition
+      parameters:
+      - name: jia_isu_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    $ref: '#/components/schemas/ConditionItemList'
+        400:
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestBodyFault'
+        401:
+          description: 401 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedFault'
+        404:
+          description: 404 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnknownResourceFault'
+        500:
+          description: 500 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerFault'
+      security:
+      - sigv4: []
+    post: # ISUからのコンディションを受け取る
+      operationId: PostCondition
+      parameters:
+      - name: jia_isu_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - is_sitting
+                - condition
+                - message
+                - timestamp
+              type: object
+              properties:
+                is_sitting:
+                  type: boolean
+                condition:
+                  type: string
+                message:
+                  type: string
+                timestamp:
+                  type: integer
+        required: true
+      responses:
+        202:
+          description: 202 response
+        400:
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestBodyFault'
+        404:
+          description: 404 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnknownResourceFault'
+        500:
+          description: 500 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerFault'
+  /api/trend: # ISUの性格毎の最新のコンディション情報
+    get:
+      operationId: Trend
+      responses:
+        200:
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    $ref: '#/components/schemas/TrendList'
+        500:
+          description: 500 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerFault'
+      security:
+      - sigv4: []
+
+components:
+  schemas:
+    ErrorMessage:
+      type: string
+
+    InitializeAttributes:
+      required:
+      - language
+      type: object
+      properties:
+        language:
+          maxLength: 2048
+          minLength: 1
+          type: string
+    IsuItem:
+      required:
+      - id
+      - jia_isu_uuid
+      - name
+      - character
+      type: object
+      properties:
+        id:
+          type: integer
+        jia_isu_uuid:
+          maxLength: 2048
+          minLength: 1
+          type: string
+        name:
+          maxLength: 2048
+          minLength: 1
+          type: string
+        character:
+          maxLength: 2048
+          minLength: 1
+          type: string
+        latest_isu_condition:
+          $ref: '#/components/schemas/IsuConditionAttributes'
+    IsuConditionAttributes:
+      required:
+      - jia_isu_uuid
+      - isu_name
+      - timestamp
+      - is_sitting
+      - condition
+      - condition_level
+      - message
+      type: object
+      properties:
+        jia_isu_uuid:
+          maxLength: 2048
+          minLength: 1
+          type: string
+        isu_name:
+          maxLength: 2048
+          minLength: 1
+          type: string
+        timestamp:
+          type: integer
+        is_sitting:
+          type: boolean
+        condition:
+          maxLength: 2048
+          minLength: 1
+          type: string
+        condition_level:
+          maxLength: 2048
+          minLength: 1
+          type: string
+        message:
+          maxLength: 2048
+          minLength: 1
+          type: string
+    IsuList:
+      type: array
+      items:
+        $ref: '#/components/schemas/IsuItem'
+    IsuAttributes:
+      required:
+      - id
+      - jia_isu_uuid
+      - name
+      - character
+      type: object
+      properties:
+        id:
+          type: integer
+        jia_isu_uuid:
+          maxLength: 2048
+          minLength: 1
+          type: string
+        name:
+          maxLength: 2048
+          minLength: 1
+          type: string
+        character:
+          maxLength: 2048
+          minLength: 1
+          type: string
+    GraphItem:
+      required:
+      - start_at
+      - end_at
+      - condition_timestamps
+      type: object
+      properties:
+        start_at:
+          type: string
+        end_at:
+          type: string
+        data:
+          $ref: '#/components/schemas/GraphDataPoint'
+        condition_timestamps:
+          type: array
+          items:
+            type: integer
+    GraphDataPoint:
+      required:
+      - score
+      - percentage
+      type: object
+      properties:
+        score:
+          type: integer
+        percentage:
+          $ref: '#/components/schemas/ConditionsPercentage'
+    GraphList:
+      type: array
+      items:
+        $ref: '#/components/schemas/GraphItem'
+    ConditionsPercentage:
+      required:
+      - sitting
+      - is_broken
+      - is_dirty
+      - is_overweight
+      type: object
+      properties:
+        sitting:
+          type: integer
+        is_broken:
+          type: integer
+        is_dirty:
+          type: integer
+        is_overweight:
+          type: integer
+    ConditionItem:
+      required:
+      - jia_isu_uuid
+      - isu_name
+      - timestamp
+      - is_sitting
+      - condition
+      - condition_level
+      - message
+      type: object
+      properties:
+        jia_isu_uuid:
+          maxLength: 2048
+          minLength: 1
+          type: string
+        isu_name:
+          maxLength: 2048
+          minLength: 1
+          type: string
+        timestamp:
+          type: integer
+        is_sitting:
+          type: boolean
+        condition:
+          maxLength: 2048
+          minLength: 1
+          type: string
+        condition_level:
+          maxLength: 2048
+          minLength: 1
+          type: string
+        message:
+          maxLength: 2048
+          minLength: 1
+          type: string
+    ConditionItemList:
+      type: array
+      items:
+        $ref: '#/components/schemas/ConditionItem'
+    TrendList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Trend'
+    Trend:
+      required:
+      - character
+      - info
+      - warning
+      - critical
+      type: object
+      properties:
+        character:
+          maxLength: 2048
+          minLength: 1
+          type: string
+        info:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrendCondition'
+        warning:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrendCondition'
+        critical:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrendCondition'
+    TrendCondition:
+      required:
+        - isu_id
+        - timestamp
+      type: object
+      properties:
+          isu_id:
+            type: integer
+          timestamp:
+            type: integer
+
+    UnauthorizedFault:
+      type: object
+      properties:
+        message:
+          $ref: '#/components/schemas/ErrorMessage'
+    BadRequestBodyFault:
+      type: object
+      properties:
+        message:
+          $ref: '#/components/schemas/ErrorMessage'
+    ForbiddenFault:
+      type: object
+      properties:
+        message:
+          $ref: '#/components/schemas/ErrorMessage'
+    UnknownResourceFault:
+      type: object
+      properties:
+        message:
+          $ref: '#/components/schemas/ErrorMessage'
+    ConflictFault:
+      type: object
+      properties:
+        message:
+          $ref: '#/components/schemas/ErrorMessage'
+    InternalServerFault:
+      type: object
+      properties:
+        message:
+          $ref: '#/components/schemas/ErrorMessage'
+
+  securitySchemes:
+    sigv4:
+      type: apiKey
+      name: Bearer
+      in: header
+      x-amazon-apigateway-authtype: awsSigv4
