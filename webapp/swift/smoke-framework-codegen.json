@@ -1,6 +1,6 @@
 {
   "baseName": "IsuCondition",
-  "modelFilePath": "OpenAPI.yml",
+  "modelFilePath": "OpenAPI.yaml",
   "modelFormat": "OPENAPI3_0",
   "generationType": "serverWithPlugin",
   "operationStubGenerationRule": {
