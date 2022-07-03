@@ -242,7 +242,7 @@ paths:
         200:
           description: 200 response
           # content:
-          #   image/png:
+          #   image/jpeg:
           #     schema:
           #       type: string
           #       format: binary
