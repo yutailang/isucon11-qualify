@@ -19,6 +19,18 @@ import IsuConditionModel
 extension IsuConditionOperationsContext {
     public func handleInitialize(input: IsuConditionModel.InitializeRequestBody) async throws
     -> IsuConditionModel.InitializeAttributes {
+        let task = Process()
+
+        task.arguments = ["-c", "../sql/init.sh"]
+        task.launchPath = "/bin/bash"
+        task.standardInput = nil
+
+        do {
+            try task.run()
+        } catch {
+            throw IsuConditionModel.IsuConditionError.internalServer(.init(message: "exec init.sh error: `\(error)"))
+        }
+
         return InitializeAttributes(language: "Swift")
     }
 }
