@@ -19,6 +19,6 @@ import IsuConditionModel
 extension IsuConditionOperationsContext {
     public func handleInitialize(input: IsuConditionModel.InitializeRequestBody) async throws
     -> IsuConditionModel.InitializeAttributes {
-        return InitializeAttributes.__default
+        return InitializeAttributes(language: "Swift")
     }
 }
