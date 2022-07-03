@@ -19,10 +19,6 @@ import IsuConditionModel
 extension IsuConditionOperationsContext {
     public func handleInitialize(input: IsuConditionModel.InitializeRequestBody) async throws
     -> IsuConditionModel.InitializeAttributes {
-        let mysql = mySQLConnectionPools.database(logger: logger)
-        let rows = try mysql.simpleQuery("SELECT @@version;").wait()
-        print(rows)
-
         return InitializeAttributes.__default
     }
 }
