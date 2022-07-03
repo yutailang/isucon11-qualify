@@ -4,27 +4,27 @@
 import PackageDescription
 
 let package = Package(
-    name: "EmptyExample",
+    name: "IsuCondition",
     platforms: [
       .macOS(.v10_15), .iOS(.v10)
     ],
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(
-            name: "EmptyExampleModel",
-            targets: ["EmptyExampleModel"]),
+            name: "IsuConditionModel",
+            targets: ["IsuConditionModel"]),
         .library(
-            name: "EmptyExampleClient",
-            targets: ["EmptyExampleClient"]),
+            name: "IsuConditionClient",
+            targets: ["IsuConditionClient"]),
         .library(
-            name: "EmptyExampleOperations",
-            targets: ["EmptyExampleOperations"]),
+            name: "IsuConditionOperations",
+            targets: ["IsuConditionOperations"]),
         .library(
-            name: "EmptyExampleOperationsHTTP1",
-            targets: ["EmptyExampleOperationsHTTP1"]),
+            name: "IsuConditionOperationsHTTP1",
+            targets: ["IsuConditionOperationsHTTP1"]),
         .executable(
-            name: "EmptyExampleService",
-            targets: ["EmptyExampleService"]),
+            name: "IsuConditionService",
+            targets: ["IsuConditionService"]),
         ],
     dependencies: [
         .package(url: "https://github.com/amzn/smoke-framework.git", from: "2.7.0"),
@@ -38,7 +38,7 @@ let package = Package(
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
-            name: "EmptyExampleModel", dependencies: [
+            name: "IsuConditionModel", dependencies: [
                 .product(name: "SmokeOperations", package: "smoke-framework"),
                 .product(name: "Logging", package: "swift-log"),
             ],
@@ -46,13 +46,13 @@ let package = Package(
                 .plugin(name: "SmokeFrameworkGenerateModel", package: "smoke-framework-application-generate")
             ]),
         .target(
-            name: "EmptyExampleOperations", dependencies: [
-                .target(name: "EmptyExampleModel"),
+            name: "IsuConditionOperations", dependencies: [
+                .target(name: "IsuConditionModel"),
                 .product(name: "MySQLKit", package: "mysql-kit"),
             ]),
         .target(
-            name: "EmptyExampleOperationsHTTP1", dependencies: [
-                .target(name: "EmptyExampleOperations"),
+            name: "IsuConditionOperationsHTTP1", dependencies: [
+                .target(name: "IsuConditionOperations"),
                 .product(name: "SmokeOperationsHTTP1", package: "smoke-framework"),
                 .product(name: "SmokeOperationsHTTP1Server", package: "smoke-framework"),
             ],
@@ -60,8 +60,8 @@ let package = Package(
                 .plugin(name: "SmokeFrameworkGenerateHttp1", package: "smoke-framework-application-generate")
             ]),
         .target(
-            name: "EmptyExampleClient", dependencies: [
-                .target(name: "EmptyExampleModel"),
+            name: "IsuConditionClient", dependencies: [
+                .target(name: "IsuConditionModel"),
                 .product(name: "SmokeOperationsHTTP1", package: "smoke-framework"),
                 .product(name: "SmokeAWSHttp", package: "smoke-aws"),
             ],
@@ -69,14 +69,14 @@ let package = Package(
                 .plugin(name: "SmokeFrameworkGenerateClient", package: "smoke-framework-application-generate")
             ]),
         .executableTarget(
-            name: "EmptyExampleService", dependencies: [
-                .target(name: "EmptyExampleOperationsHTTP1"),
+            name: "IsuConditionService", dependencies: [
+                .target(name: "IsuConditionOperationsHTTP1"),
                 .product(name: "SmokeAWSCredentials", package: "smoke-aws-credentials"),
                 .product(name: "SmokeOperationsHTTP1Server", package: "smoke-framework"),
             ]),
         .testTarget(
-            name: "EmptyExampleOperationsTests", dependencies: [
-                .target(name: "EmptyExampleOperations"),
+            name: "IsuConditionOperationsTests", dependencies: [
+                .target(name: "IsuConditionOperations"),
             ]),
         ],
         swiftLanguageVersions: [.v5]
