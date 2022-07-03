@@ -13,26 +13,10 @@ import MySQLKit
 public struct IsuConditionOperationsContext {
     let logger: Logger
     // TODO: Add properties to be accessed by the operation handlers
-    let mySQLConnectionPools: EventLoopGroupConnectionPool<MySQLConnectionSource>?
+    let mySQLConnectionPools: EventLoopGroupConnectionPool<MySQLConnectionSource>
 
-    public init(logger: Logger, eventLoop: EventLoop?) {
+    public init(logger: Logger, mySQLConnectionPools: EventLoopGroupConnectionPool<MySQLConnectionSource>) {
         self.logger = logger
-
-        let environment = ProcessInfo.processInfo.environment
-        let mySQLConfiguration = MySQLConfiguration(
-            hostname: environment["MYSQL_HOST"] ?? "127.0.0.1",
-            port: (environment["MYSQL_PORT"].flatMap(Int.init)) ?? 3306,
-            username: environment["MYSQL_USER"] ?? "isucon",
-            password: environment["MYSQL_PASS"] ?? "isucon",
-            database: environment["MYSQL_DBNAME"] ?? "isucondition",
-            tlsConfiguration: nil
-        )
-
-        self.mySQLConnectionPools = eventLoop.map {
-            EventLoopGroupConnectionPool(
-                source: MySQLConnectionSource(configuration: mySQLConfiguration),
-                on: $0
-            )
-        }
+        self.mySQLConnectionPools = mySQLConnectionPools
     }
 }
