@@ -10,7 +10,7 @@ import IsuConditionModel
 class SignoutTests: XCTestCase {
 
     func testSignout() async throws {
-        let input = SignoutRequestBody.__default
+        let input = SignoutRequest.__default
         let operationsContext = createOperationsContext()
     
         try await operationsContext.handleSignout(input: input)

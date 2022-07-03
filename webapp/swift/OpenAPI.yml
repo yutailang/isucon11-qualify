@@ -45,13 +45,7 @@ paths:
       operationId: Auth
       requestBody:
         content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                dummy:
-                  type: string
- 
+          application/json: {}
         required: false
       responses:
         200:
@@ -81,12 +75,7 @@ paths:
       operationId: Signout
       requestBody:
         content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                dummy:
-                  type: string
+          application/json: {}
         required: false
       responses:
         200:
