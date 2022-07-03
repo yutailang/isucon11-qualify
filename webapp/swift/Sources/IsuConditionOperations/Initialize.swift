@@ -25,6 +25,7 @@ extension IsuConditionOperationsContext {
 
         let mysql = pools.database(logger: logger)
         let rows = try mysql.simpleQuery("SELECT @@version;").wait()
+        print(rows)
 
         return InitializeAttributes.__default
     }
