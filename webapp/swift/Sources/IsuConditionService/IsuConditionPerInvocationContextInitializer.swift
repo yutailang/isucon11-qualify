@@ -30,7 +30,10 @@ struct IsuConditionPerInvocationContextInitializer: IsuConditionPerInvocationCon
     */
     public func getInvocationContext(invocationReporting: SmokeServerInvocationReporting<SmokeInvocationTraceContext>)
     -> IsuConditionOperationsContext {
-        return IsuConditionOperationsContext(logger: invocationReporting.logger)
+        return IsuConditionOperationsContext(
+            logger: invocationReporting.logger,
+            eventLoop: invocationReporting.eventLoop
+        )
     }
 
     /**
