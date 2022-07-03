@@ -1,10 +1,10 @@
 //
 // PostConditionPost.swift
-// EmptyExampleOperations
+// IsuConditionOperations
 //
 
 import Foundation
-import EmptyExampleModel
+import IsuConditionModel
 
 /**
  Handler for the PostConditionPost operation.
@@ -14,7 +14,7 @@ import EmptyExampleModel
      - context: The context provided for this operation.
  - Throws: badRequestBody, internalServer, unknownResource.
  */
-extension EmptyExampleOperationsContext {
-    public func handlePostConditionPost(input: EmptyExampleModel.PostConditionPostRequest) async throws {
+extension IsuConditionOperationsContext {
+    public func handlePostConditionPost(input: IsuConditionModel.PostConditionPostRequest) async throws {
     }
 }

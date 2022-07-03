@@ -1,19 +1,19 @@
 //
-// EmptyExamplePerInvocationContextInitializer.swift
-// EmptyExampleService
+// IsuConditionPerInvocationContextInitializer.swift
+// IsuConditionService
 //
 
-import EmptyExampleOperations
-import EmptyExampleOperationsHTTP1
+import IsuConditionOperations
+import IsuConditionOperationsHTTP1
 import SmokeOperationsHTTP1Server
 import SmokeAWSCore
 import NIO
             
 /**
- Initializer for the EmptyExampleService.
+ Initializer for the IsuConditionService.
  */
 @main
-struct EmptyExamplePerInvocationContextInitializer: EmptyExamplePerInvocationContextInitializerProtocol {
+struct IsuConditionPerInvocationContextInitializer: IsuConditionPerInvocationContextInitializerProtocol {
     // TODO: Add properties to be accessed by the operation handlers
 
     /**
@@ -29,8 +29,8 @@ struct EmptyExamplePerInvocationContextInitializer: EmptyExamplePerInvocationCon
      On invocation.
     */
     public func getInvocationContext(invocationReporting: SmokeServerInvocationReporting<SmokeInvocationTraceContext>)
-    -> EmptyExampleOperationsContext {
-        return EmptyExampleOperationsContext(logger: invocationReporting.logger)
+    -> IsuConditionOperationsContext {
+        return IsuConditionOperationsContext(logger: invocationReporting.logger)
     }
 
     /**

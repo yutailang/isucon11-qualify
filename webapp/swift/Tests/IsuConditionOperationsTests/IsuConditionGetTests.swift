@@ -1,11 +1,11 @@
 //
 // IsuConditionGetTests.swift
-// EmptyExampleOperationsTests
+// IsuConditionOperationsTests
 //
 
 import XCTest
-@testable import EmptyExampleOperations
-import EmptyExampleModel
+@testable import IsuConditionOperations
+import IsuConditionModel
 
 class IsuConditionGetTests: XCTestCase {
 

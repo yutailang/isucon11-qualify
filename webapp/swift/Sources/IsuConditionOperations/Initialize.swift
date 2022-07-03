@@ -1,10 +1,10 @@
 //
 // Initialize.swift
-// EmptyExampleOperations
+// IsuConditionOperations
 //
 
 import Foundation
-import EmptyExampleModel
+import IsuConditionModel
 
 /**
  Handler for the Initialize operation.
@@ -16,9 +16,9 @@ import EmptyExampleModel
      Will be validated before being returned to caller.
  - Throws: badRequestBody, internalServer.
  */
-extension EmptyExampleOperationsContext {
-    public func handleInitialize(input: EmptyExampleModel.InitializeRequestBody) async throws
-    -> EmptyExampleModel.InitializeAttributes {
+extension IsuConditionOperationsContext {
+    public func handleInitialize(input: IsuConditionModel.InitializeRequestBody) async throws
+    -> IsuConditionModel.InitializeAttributes {
         return InitializeAttributes.__default
     }
 }

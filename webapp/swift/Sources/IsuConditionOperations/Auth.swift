@@ -1,10 +1,10 @@
 //
 // Auth.swift
-// EmptyExampleOperations
+// IsuConditionOperations
 //
 
 import Foundation
-import EmptyExampleModel
+import IsuConditionModel
 
 /**
  Handler for the Auth operation.
@@ -14,7 +14,7 @@ import EmptyExampleModel
      - context: The context provided for this operation.
  - Throws: badRequestBody, forbidden, internalServer.
  */
-extension EmptyExampleOperationsContext {
-    public func handleAuth(input: EmptyExampleModel.AuthRequestBody) async throws {
+extension IsuConditionOperationsContext {
+    public func handleAuth(input: IsuConditionModel.AuthRequestBody) async throws {
     }
 }
