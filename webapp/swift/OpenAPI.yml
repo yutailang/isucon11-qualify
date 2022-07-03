@@ -5,7 +5,7 @@ info:
 servers:
 - url: /
 paths:
-  /api/initialize: # サービスを初期化
+  /initialize: # サービスを初期化
     post:
       operationId: Initialize
       requestBody:
