@@ -10,6 +10,33 @@
       }
     },
     {
+      "identity" : "async-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/async-kit.git",
+      "state" : {
+        "revision" : "c3329e444bafbb12d1d312af9191be95348a8175",
+        "version" : "1.13.0"
+      }
+    },
+    {
+      "identity" : "mysql-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/mysql-kit.git",
+      "state" : {
+        "revision" : "f54e0876fce2d68551be0e704b3a94f78eedb9f8",
+        "version" : "4.5.0"
+      }
+    },
+    {
+      "identity" : "mysql-nio",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/mysql-nio.git",
+      "state" : {
+        "revision" : "f0e8ad7e18e870e8665311d70bf3f01dcd6024a8",
+        "version" : "1.4.0"
+      }
+    },
+    {
       "identity" : "openapikit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mattpolzin/OpenAPIKit.git",
@@ -79,6 +106,15 @@
       "state" : {
         "revision" : "6100bbea63e759b6a23e9e43bd08ded034dbeec0",
         "version" : "2.12.1"
+      }
+    },
+    {
+      "identity" : "sql-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/sql-kit.git",
+      "state" : {
+        "revision" : "89b0a0a5f110e77272fb5a775064a31bfc1f155c",
+        "version" : "3.18.0"
       }
     },
     {
