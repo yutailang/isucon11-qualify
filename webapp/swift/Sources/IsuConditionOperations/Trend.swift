@@ -1,10 +1,10 @@
 //
 // Trend.swift
-// EmptyExampleOperations
+// IsuConditionOperations
 //
 
 import Foundation
-import EmptyExampleModel
+import IsuConditionModel
 
 /**
  Handler for the Trend operation.
@@ -16,9 +16,9 @@ import EmptyExampleModel
      Will be validated before being returned to caller.
  - Throws: internalServer.
  */
-extension EmptyExampleOperationsContext {
-    public func handleTrend(input: EmptyExampleModel.TrendRequest) async throws
-    -> EmptyExampleModel.Trend200ResponseBody {
+extension IsuConditionOperationsContext {
+    public func handleTrend(input: IsuConditionModel.TrendRequest) async throws
+    -> IsuConditionModel.Trend200ResponseBody {
         return Trend200ResponseBody.__default
     }
 }

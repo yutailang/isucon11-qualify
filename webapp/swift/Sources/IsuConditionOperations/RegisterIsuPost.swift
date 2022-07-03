@@ -1,10 +1,10 @@
 //
 // RegisterIsuPost.swift
-// EmptyExampleOperations
+// IsuConditionOperations
 //
 
 import Foundation
-import EmptyExampleModel
+import IsuConditionModel
 
 /**
  Handler for the RegisterIsuPost operation.
@@ -16,9 +16,9 @@ import EmptyExampleModel
      Will be validated before being returned to caller.
  - Throws: badRequestBody, conflict, internalServer, unauthorized.
  */
-extension EmptyExampleOperationsContext {
-    public func handleRegisterIsuPost(input: EmptyExampleModel.RegisterIsuPostRequestBody) async throws
-    -> EmptyExampleModel.IsuAttributes {
+extension IsuConditionOperationsContext {
+    public func handleRegisterIsuPost(input: IsuConditionModel.RegisterIsuPostRequestBody) async throws
+    -> IsuConditionModel.IsuAttributes {
         return IsuAttributes.__default
     }
 }

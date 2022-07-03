@@ -1,10 +1,10 @@
 //
 // UserMe.swift
-// EmptyExampleOperations
+// IsuConditionOperations
 //
 
 import Foundation
-import EmptyExampleModel
+import IsuConditionModel
 
 /**
  Handler for the UserMe operation.
@@ -16,9 +16,9 @@ import EmptyExampleModel
      Will be validated before being returned to caller.
  - Throws: internalServer, unauthorized.
  */
-extension EmptyExampleOperationsContext {
-    public func handleUserMe(input: EmptyExampleModel.UserMeRequest) async throws
-    -> EmptyExampleModel.UserMe200ResponseBody {
+extension IsuConditionOperationsContext {
+    public func handleUserMe(input: IsuConditionModel.UserMeRequest) async throws
+    -> IsuConditionModel.UserMe200ResponseBody {
         return UserMe200ResponseBody.__default
     }
 }

@@ -1,10 +1,10 @@
 //
 // IsuGraph.swift
-// EmptyExampleOperations
+// IsuConditionOperations
 //
 
 import Foundation
-import EmptyExampleModel
+import IsuConditionModel
 
 /**
  Handler for the IsuGraph operation.
@@ -16,9 +16,9 @@ import EmptyExampleModel
      Will be validated before being returned to caller.
  - Throws: badRequestBody, internalServer, unauthorized, unknownResource.
  */
-extension EmptyExampleOperationsContext {
-    public func handleIsuGraph(input: EmptyExampleModel.IsuGraphRequest) async throws
-    -> EmptyExampleModel.IsuGraph200ResponseBody {
+extension IsuConditionOperationsContext {
+    public func handleIsuGraph(input: IsuConditionModel.IsuGraphRequest) async throws
+    -> IsuConditionModel.IsuGraph200ResponseBody {
         return IsuGraph200ResponseBody.__default
     }
 }

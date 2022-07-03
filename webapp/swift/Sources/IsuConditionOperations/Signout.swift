@@ -1,10 +1,10 @@
 //
 // Signout.swift
-// EmptyExampleOperations
+// IsuConditionOperations
 //
 
 import Foundation
-import EmptyExampleModel
+import IsuConditionModel
 
 /**
  Handler for the Signout operation.
@@ -14,7 +14,7 @@ import EmptyExampleModel
      - context: The context provided for this operation.
  - Throws: internalServer.
  */
-extension EmptyExampleOperationsContext {
-    public func handleSignout(input: EmptyExampleModel.SignoutRequestBody) async throws {
+extension IsuConditionOperationsContext {
+    public func handleSignout(input: IsuConditionModel.SignoutRequestBody) async throws {
     }
 }

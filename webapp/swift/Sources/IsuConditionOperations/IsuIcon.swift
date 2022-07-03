@@ -1,10 +1,10 @@
 //
 // IsuIcon.swift
-// EmptyExampleOperations
+// IsuConditionOperations
 //
 
 import Foundation
-import EmptyExampleModel
+import IsuConditionModel
 
 /**
  Handler for the IsuIcon operation.
@@ -14,7 +14,7 @@ import EmptyExampleModel
      - context: The context provided for this operation.
  - Throws: internalServer, unauthorized.
  */
-extension EmptyExampleOperationsContext {
-    public func handleIsuIcon(input: EmptyExampleModel.IsuIconRequest) async throws {
+extension IsuConditionOperationsContext {
+    public func handleIsuIcon(input: IsuConditionModel.IsuIconRequest) async throws {
     }
 }

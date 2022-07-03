@@ -1,10 +1,10 @@
 //
 // IsuConditionGet.swift
-// EmptyExampleOperations
+// IsuConditionOperations
 //
 
 import Foundation
-import EmptyExampleModel
+import IsuConditionModel
 
 /**
  Handler for the IsuConditionGet operation.
@@ -16,9 +16,9 @@ import EmptyExampleModel
      Will be validated before being returned to caller.
  - Throws: badRequestBody, internalServer, unauthorized, unknownResource.
  */
-extension EmptyExampleOperationsContext {
-    public func handleIsuConditionGet(input: EmptyExampleModel.IsuConditionGetRequest) async throws
-    -> EmptyExampleModel.IsuConditionGet200ResponseBody {
+extension IsuConditionOperationsContext {
+    public func handleIsuConditionGet(input: IsuConditionModel.IsuConditionGetRequest) async throws
+    -> IsuConditionModel.IsuConditionGet200ResponseBody {
         return IsuConditionGet200ResponseBody.__default
     }
 }

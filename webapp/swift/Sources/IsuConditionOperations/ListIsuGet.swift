@@ -1,10 +1,10 @@
 //
 // ListIsuGet.swift
-// EmptyExampleOperations
+// IsuConditionOperations
 //
 
 import Foundation
-import EmptyExampleModel
+import IsuConditionModel
 
 /**
  Handler for the ListIsuGet operation.
@@ -16,9 +16,9 @@ import EmptyExampleModel
      Will be validated before being returned to caller.
  - Throws: internalServer, unauthorized.
  */
-extension EmptyExampleOperationsContext {
-    public func handleListIsuGet(input: EmptyExampleModel.ListIsuGetRequest) async throws
-    -> EmptyExampleModel.ListIsuGet200ResponseBody {
+extension IsuConditionOperationsContext {
+    public func handleListIsuGet(input: IsuConditionModel.ListIsuGetRequest) async throws
+    -> IsuConditionModel.ListIsuGet200ResponseBody {
         return ListIsuGet200ResponseBody.__default
     }
 }
