@@ -5,6 +5,7 @@
 
 import Foundation
 import EmptyExampleModel
+import MySQLKit
 
 /**
  Handler for the AddCustomerEmailAddress operation.

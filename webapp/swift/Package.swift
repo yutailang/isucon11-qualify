@@ -31,7 +31,8 @@ let package = Package(
         .package(url: "https://github.com/amzn/smoke-aws-credentials.git", from: "2.0.0"),
         .package(url: "https://github.com/amzn/smoke-aws.git", from: "2.0.0"),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
-        .package(url: "https://github.com/amzn/smoke-framework-application-generate", from: "3.0.0-beta.1")
+        .package(url: "https://github.com/amzn/smoke-framework-application-generate", from: "3.0.0-beta.1"),
+        .package(url: "https://github.com/vapor/mysql-kit.git", from: "4.5.0"),
         ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -47,6 +48,7 @@ let package = Package(
         .target(
             name: "EmptyExampleOperations", dependencies: [
                 .target(name: "EmptyExampleModel"),
+                .product(name: "MySQLKit", package: "mysql-kit"),
             ]),
         .target(
             name: "EmptyExampleOperationsHTTP1", dependencies: [
